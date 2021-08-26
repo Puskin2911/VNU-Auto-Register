@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Config</title>
+
+  <style>
+      body {
+          min-width: 300px;
+      }
+  </style>
+</head>
+<body>
+<div id="root">
+  <div class="container">
+    <div class="row border-bottom my-2 pb-2">
+      <div class="col">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-sm" id="inputUsername" placeholder="Enter username">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control form-control-sm" id="inputPassword" placeholder="Password">
+          </div>
+          <button id="update-account-btn" type="button" class="btn btn-primary form-control form-control-sm">Update
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-sm" id="inputSubject" placeholder="Enter Id">
+          </div>
+          <button id="add-btn" type="button" class="btn btn-danger form-control form-control-sm">Add</button>
+        </form>
+      </div>
+    </div>
+    <div  class="row">
+      <div id="subject-container" class="col"></div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="popup.js"></script>
+</html>

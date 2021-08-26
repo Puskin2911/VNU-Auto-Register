@@ -1,0 +1,38 @@
+{
+  "name": "VNU Auto Register",
+  "description": "@@",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/vnu-logo.png",
+      "32": "/images/vnu-logo.png",
+      "48": "/images/vnu-logo.png",
+      "128": "/images/vnu-logo.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://dangkyhoc.vnu.edu.vn/dang**"
+      ],
+      "js": [
+        "assets/ajax-jquery.js",
+        "content-script.js"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "/images/vnu-logo.png",
+    "32": "/images/vnu-logo.png",
+    "48": "/images/vnu-logo.png",
+    "128": "/images/vnu-logo.png"
+  }
+}
