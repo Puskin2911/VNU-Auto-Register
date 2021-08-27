@@ -7,7 +7,8 @@ const resource = {
     selectSubject: (id) => {
         return "http://dangkyhoc.vnu.edu.vn/chon-mon-hoc/" + id + "/1/1"
     },
-    home: "http://dangkyhoc.vnu.edu.vn/dang-ky-mon-hoc-nganh-1"
+    home: "http://dangkyhoc.vnu.edu.vn/dang-ky-mon-hoc-nganh-1",
+    registeredSubjects: "http://dangkyhoc.vnu.edu.vn/danh-sach-mon-hoc-da-dang-ky/1"
 }
 
 let subjects = {}
@@ -41,6 +42,17 @@ function confirmSubjects() {
         type: "POST",
         success: function (result) {
             console.log(result)
+            // $.ajax({
+            //     url: resource.registeredSubjects,
+            //     type: "POST",
+            //     success: function (subjects) {
+            //         console.log(subjects)
+            //         const tbody = document.createElement("tbody")
+            //         tbody.innerHTML = subjects
+            //         alert(subjects)
+            //     }
+            // });
+            alert(result.message)
         }
     });
 }

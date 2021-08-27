@@ -1,6 +1,6 @@
 {
   "name": "VNU Auto Register",
-  "description": "@@",
+  "description": "Tool used to auto login and register subjects",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
@@ -12,8 +12,8 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/vnu-logo.png",
-      "32": "/images/vnu-logo.png",
+      "16": "/images/panda.png",
+      "32": "/images/panda.png",
       "48": "/images/vnu-logo.png",
       "128": "/images/vnu-logo.png"
     }

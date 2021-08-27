@@ -1,9 +1,19 @@
-const subjectContainer = document.getElementById("subject-container")
 const addBtn = document.getElementById("add-btn")
 const updateAccountBtn = document.getElementById("update-account-btn")
+const toggleBtn = document.getElementById("toggle-btn")
 
 showAccountInfo()
 showTargetSubjects()
+handleOnOff()
+
+toggleBtn.addEventListener("click", () => {
+    chrome.storage.sync.get("isEnable", (result) => {
+        let isEnable = result["isEnable"]
+        isEnable = !isEnable
+
+        chrome.storage.sync.set({isEnable}, () => handleOnOff())
+    })
+})
 
 updateAccountBtn.addEventListener("click", () => {
     const inputUsername = document.getElementById("inputUsername")
@@ -86,7 +96,7 @@ function showTargetSubjects() {
 
             const removeBtn = document.createElement("button")
             removeBtn.innerHTML = "Remove"
-            removeBtn.className = "btn btn-outline-success btn-sm"
+            removeBtn.className = "btn btn-outline-danger btn-sm"
             removeCol.appendChild(removeBtn)
 
             row.appendChild(subjectCol)
@@ -109,5 +119,25 @@ function handleRemove(subjectId) {
         classSubjects = [...newClassSubject]
 
         chrome.storage.sync.set({classSubjects}, () => showTargetSubjects())
+    })
+}
+
+function handleOnOff() {
+    const bodyContainer = document.getElementById("body-container")
+
+    chrome.storage.sync.get("isEnable", (result) => {
+        const isEnable = result["isEnable"]
+        const iconElement = document.createElement("i");
+        if (isEnable === undefined || isEnable === false) {
+            iconElement.className = "fas fa-toggle-off fa-2x text-danger"
+            toggleBtn.className = "btn bg-white active p-0"
+            bodyContainer.hidden = true
+        } else {
+            iconElement.className = "fas fa-toggle-on fa-2x text-success"
+            toggleBtn.className = "btn bg-white active p-0"
+            bodyContainer.hidden = false
+        }
+        toggleBtn.innerHTML = ""
+        toggleBtn.appendChild(iconElement)
     })
 }
