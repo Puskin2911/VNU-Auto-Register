@@ -13,28 +13,35 @@ const resource = {
 
 let subjects = {}
 
-if (window.location.href === "http://dangkyhoc.vnu.edu.vn/dang-nhap") {
-    login()
-} else {
+chrome.storage.sync.get("isEnable", (result) => {
+    const isEnable = result["isEnable"]
+    if (isEnable === true) {
+        doWork();
+    }
+})
 
-    getSubjects()
-        .then(() => {
-            chrome.storage.sync.get("classSubjects", (result) => {
-                const classSubjects = result["classSubjects"]
+function doWork() {
+    if (window.location.href === "http://dangkyhoc.vnu.edu.vn/dang-nhap") {
+        login()
+    } else {
+        getSubjects()
+            .then(() => {
+                chrome.storage.sync.get("classSubjects", (result) => {
+                    const classSubjects = result["classSubjects"]
 
-                console.log(classSubjects)
-                classSubjects.forEach(subject => {
-                    const subjectId = subjects[subject];
-                    if (subjectId) {
-                        selectSubjects(subjectId)
-                            .then(() => confirmSubjects())
-                    }
+                    console.log(classSubjects)
+                    classSubjects.forEach(subject => {
+                        const subjectId = subjects[subject];
+                        if (subjectId) {
+                            selectSubjects(subjectId)
+                                .then(() => confirmSubjects())
+                        }
+                    })
+                    confirmSubjects()
                 })
-                confirmSubjects()
             })
-        })
+    }
 }
-
 
 function confirmSubjects() {
     $.ajax({
